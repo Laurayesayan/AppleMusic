@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		A4B64F9A4AA947F9BAB8414B /* Pods_AppleMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 178109EE429924D4005A39D2 /* Pods_AppleMusic.framework */; };
+		F7694FE72499520A0034DD47 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7694FE62499520A0034DD47 /* AlbumsViewController.swift */; };
+		F7694FE924995F200034DD47 /* Albums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7694FE824995F200034DD47 /* Albums.swift */; };
 		F7FDDF452494EB5600EF46B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FDDF442494EB5600EF46B4 /* AppDelegate.swift */; };
 		F7FDDF472494EB5600EF46B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FDDF462494EB5600EF46B4 /* SceneDelegate.swift */; };
 		F7FDDF492494EB5600EF46B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FDDF482494EB5600EF46B4 /* ViewController.swift */; };
@@ -22,6 +24,8 @@
 		178109EE429924D4005A39D2 /* Pods_AppleMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppleMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21DF84646630806F384E1F4E /* Pods-AppleMusic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleMusic.debug.xcconfig"; path = "Target Support Files/Pods-AppleMusic/Pods-AppleMusic.debug.xcconfig"; sourceTree = "<group>"; };
 		6CFBCA87B9D6D206109704DC /* Pods-AppleMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleMusic.release.xcconfig"; path = "Target Support Files/Pods-AppleMusic/Pods-AppleMusic.release.xcconfig"; sourceTree = "<group>"; };
+		F7694FE62499520A0034DD47 /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
+		F7694FE824995F200034DD47 /* Albums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Albums.swift; sourceTree = "<group>"; };
 		F7FDDF412494EB5600EF46B4 /* AppleMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7FDDF442494EB5600EF46B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7FDDF462494EB5600EF46B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,7 +64,6 @@
 				21DF84646630806F384E1F4E /* Pods-AppleMusic.debug.xcconfig */,
 				6CFBCA87B9D6D206109704DC /* Pods-AppleMusic.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -88,8 +91,10 @@
 				F7FDDF442494EB5600EF46B4 /* AppDelegate.swift */,
 				F7FDDF462494EB5600EF46B4 /* SceneDelegate.swift */,
 				F7FDDF482494EB5600EF46B4 /* ViewController.swift */,
+				F7694FE824995F200034DD47 /* Albums.swift */,
 				F7FDDF5A2496378C00EF46B4 /* MusicViewModel.swift */,
 				F7FDDF582494F75E00EF46B4 /* Artist.swift */,
+				F7694FE62499520A0034DD47 /* AlbumsViewController.swift */,
 				F7FDDF4A2494EB5600EF46B4 /* Main.storyboard */,
 				F7FDDF4D2494EB5800EF46B4 /* Assets.xcassets */,
 				F7FDDF4F2494EB5800EF46B4 /* LaunchScreen.storyboard */,
@@ -215,7 +220,9 @@
 			files = (
 				F7FDDF5B2496378C00EF46B4 /* MusicViewModel.swift in Sources */,
 				F7FDDF492494EB5600EF46B4 /* ViewController.swift in Sources */,
+				F7694FE72499520A0034DD47 /* AlbumsViewController.swift in Sources */,
 				F7FDDF452494EB5600EF46B4 /* AppDelegate.swift in Sources */,
+				F7694FE924995F200034DD47 /* Albums.swift in Sources */,
 				F7FDDF592494F75E00EF46B4 /* Artist.swift in Sources */,
 				F7FDDF472494EB5600EF46B4 /* SceneDelegate.swift in Sources */,
 			);

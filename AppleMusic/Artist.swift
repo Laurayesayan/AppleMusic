@@ -13,6 +13,5 @@ struct Artists: Decodable {
     
     struct Artist: Decodable {
         var artistName: String
-        var artistId: Int
     }
 }

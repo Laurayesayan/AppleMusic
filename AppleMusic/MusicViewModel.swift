@@ -9,7 +9,7 @@
 import Foundation
 
 class MusicViewModel {
-    func makeRequest(artistName: String, offset: Int, getArtists: @escaping (Artists) -> Void) {
+    func artistsRequest(artistName: String, offset: Int, getArtists: @escaping (Artists) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
             let filteredArtistName = artistName.replacingOccurrences(of: " ", with: "")
             let decoder = JSONDecoder()
@@ -20,6 +20,21 @@ class MusicViewModel {
             
             DispatchQueue.main.async {
                 getArtists(artists)
+            }
+        }
+    }
+    
+    func albumsRequest(artistName: String, getAlbums: @escaping (Albums) -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            let filteredArtistName = artistName.replacingOccurrences(of: " ", with: "")
+            let decoder = JSONDecoder()
+            guard let url = URL(string: "https://itunes.apple.com/search?term=\(filteredArtistName)&entity=album&limit=10") else { return }
+            guard let jsonData = try? Data(contentsOf: url) else { return }
+
+            guard let albums = try? decoder.decode(Albums.self, from: jsonData) else { return }
+
+            DispatchQueue.main.async {
+                getAlbums(albums)
             }
         }
     }

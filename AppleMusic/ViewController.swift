@@ -14,13 +14,32 @@ class ViewController: UIViewController {
     @IBOutlet weak var searcher: UISearchBar!
     @IBOutlet weak var artistsTableView: UITableView!
     
-    var artists = MutableObservableArray<Artists.Artist>([])
-    private lazy var offset = 0
+    private var artists = MutableObservableArray<Artists.Artist>([])
+    private var offset = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bindRequestWithSearcher()
         bindArtistsWithTableView()
+        observeRowSelection()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if let albumsViewController = segue.destination as? AlbumsViewController, segue.identifier == "ShowAlbums" {
+            if let artistName = sender as? String {
+                albumsViewController.artistName = artistName
+            }
+        }
+    }
+    
+    // MARK: - Binding
+    
+    func observeRowSelection() {
+        artistsTableView.reactive.selectedRowIndexPath.observeNext { [weak self] indexPath in
+            guard let self = self else { return }
+            self.performSegue(withIdentifier: "ShowAlbums", sender: self.artists.value.collection[indexPath.row].artistName)
+        }.dispose(in: bag)
     }
     
     func bindArtistsWithTableView() {
@@ -34,7 +53,7 @@ class ViewController: UIViewController {
             if let self = self {
                 if tableView.indexPathsForVisibleRows!.last!.row + 1 == self.offset + 50 {
                     self.offset += 50
-                    self.request(artistName: self.searcher.text!)
+                    self.requestForArtists(artistName: self.searcher.text!)
                 }
             }
             
@@ -52,12 +71,14 @@ class ViewController: UIViewController {
                 self.artists.removeAll()
                 
                 self.offset = 0
-                self.request(artistName: text)
+                self.requestForArtists(artistName: text)
         }.dispose(in: bag)
     }
     
-    func request(artistName: String) {
-        MusicViewModel().makeRequest(artistName: artistName, offset: self.offset) { [weak self] artists in
+    // MARK: - Request
+    
+    func requestForArtists(artistName: String) {
+        MusicViewModel().artistsRequest(artistName: artistName, offset: self.offset) { [weak self] artists in
             guard let self = self else { return }
 
             for artist in artists.results {

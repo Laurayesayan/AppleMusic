@@ -6,6 +6,7 @@ target 'AppleMusic' do
   use_frameworks!
 
   # Pods for AppleMusic
-  pod 'Bond', '~> 7.4' 
+  pod 'Bond', '~> 7.4'
+  pod 'Kingfisher', '~> 5'
 
 end

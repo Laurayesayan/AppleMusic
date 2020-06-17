@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -46,14 +47,83 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="1h1-Nq-nIH"/>
                     <connections>
                         <outlet property="artistsTableView" destination="rg1-oI-UmB" id="DlB-uV-xTn"/>
                         <outlet property="searcher" destination="KSV-UO-Omx" id="RWt-d1-H3e"/>
+                        <segue destination="8FV-gL-xyW" kind="show" identifier="ShowAlbums" id="hSc-y6-grs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139" y="139"/>
+        </scene>
+        <!--Albums View Controller-->
+        <scene sceneID="Z36-bO-v62">
+            <objects>
+                <viewController id="8FV-gL-xyW" customClass="AlbumsViewController" customModule="AppleMusic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bEu-rt-mL3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hih-tN-4sA">
+                                <rect key="frame" x="0.0" y="8" width="375" height="148"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="148" id="cGn-aF-bUe"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cg9-QL-eFk">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AlbumsCell" id="6u2-Cf-JnQ" customClass="AlbumsCollectionViewCell" customModule="AppleMusic" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="10" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FYk-cu-ERp">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dwF-yw-awm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="128" id="3Ar-W0-NcN"/>
+                                                        <constraint firstAttribute="width" constant="128" id="Ejb-0O-f1Q"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dwF-yw-awm" firstAttribute="top" secondItem="FYk-cu-ERp" secondAttribute="top" id="FKb-NE-x58"/>
+                                                <constraint firstAttribute="trailing" secondItem="dwF-yw-awm" secondAttribute="trailing" priority="750" id="Nph-se-BED"/>
+                                                <constraint firstAttribute="bottom" secondItem="dwF-yw-awm" secondAttribute="bottom" priority="750" id="Xqj-Sg-M52"/>
+                                                <constraint firstItem="dwF-yw-awm" firstAttribute="leading" secondItem="FYk-cu-ERp" secondAttribute="leading" id="nRL-aQ-kbV"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="albumImageView" destination="dwF-yw-awm" id="4zn-MH-nfn"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="hih-tN-4sA" firstAttribute="top" secondItem="RUA-gn-q5l" secondAttribute="top" constant="8" id="Fqx-2A-GUu"/>
+                            <constraint firstItem="RUA-gn-q5l" firstAttribute="trailing" secondItem="hih-tN-4sA" secondAttribute="trailing" id="o0x-MJ-eTz"/>
+                            <constraint firstItem="hih-tN-4sA" firstAttribute="leading" secondItem="RUA-gn-q5l" secondAttribute="leading" id="wqX-rf-Eaz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RUA-gn-q5l"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="SFx-cy-IGB"/>
+                    <connections>
+                        <outlet property="albumsCollectionView" destination="hih-tN-4sA" id="2zW-Wm-Wyn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q7D-WA-8ac" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="920.79999999999995" y="138.98050974512745"/>
         </scene>
     </scenes>
 </document>
