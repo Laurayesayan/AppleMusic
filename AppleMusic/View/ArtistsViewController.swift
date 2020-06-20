@@ -10,7 +10,7 @@ import UIKit
 import Bond
 import ReactiveKit
 
-class ViewController: UIViewController {
+class ArtistsViewController: UIViewController {
     @IBOutlet weak var searcher: UISearchBar!
     @IBOutlet weak var artistsTableView: UITableView!
     
@@ -19,8 +19,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindRequestWithSearcher()
-        bindArtistsWithTableView()
+        bindRequestToSearcher()
+        bindArtistsToTableView()
         observeRowSelection()
     }
 
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         }.dispose(in: bag)
     }
     
-    func bindArtistsWithTableView() {
+    func bindArtistsToTableView() {
         artists.bind(to: artistsTableView) { [weak self] (dataSource, indexPath, tableView) -> UITableViewCell in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArtistsCell") else { fatalError() }
 
@@ -51,8 +51,9 @@ class ViewController: UIViewController {
             }
             
             if let self = self {
-                if tableView.indexPathsForVisibleRows!.last!.row + 1 == self.offset + 50 {
-                    self.offset += 50
+                let offsetStep = 50
+                if tableView.indexPathsForVisibleRows!.last!.row + 1 == self.offset + offsetStep {
+                    self.offset += offsetStep
                     self.requestForArtists(artistName: self.searcher.text!)
                 }
             }
@@ -61,7 +62,7 @@ class ViewController: UIViewController {
         }.dispose(in: bag)
     }
     
-    func bindRequestWithSearcher() {
+    func bindRequestToSearcher() {
         searcher.reactive.text
             .ignoreNils()
             .debounce(for: 0.8)
