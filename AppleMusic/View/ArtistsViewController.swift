@@ -34,7 +34,6 @@ class ArtistsViewController: UIViewController {
     }
     
     // MARK: - Binding
-    
     func observeRowSelection() {
         artistsTableView.reactive.selectedRowIndexPath.observeNext { [weak self] indexPath in
             guard let self = self else { return }
@@ -77,9 +76,8 @@ class ArtistsViewController: UIViewController {
     }
     
     // MARK: - Request
-    
     func requestForArtists(artistName: String) {
-        MusicViewModel().artistsRequest(artistName: artistName, offset: self.offset) { [weak self] artists in
+        MusicViewModel().request(artistName: artistName, entity: "musicArtist", limit: 50, offset: self.offset) { [weak self] (artists: Artists) in
             guard let self = self else { return }
 
             for artist in artists.results {

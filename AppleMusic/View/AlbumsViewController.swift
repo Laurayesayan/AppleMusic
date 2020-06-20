@@ -31,11 +31,13 @@ class AlbumsViewController: UIViewController {
 
     // MARK: - Binding
     func bindAlbumsToCollectionView() {
-        albums.bind(to: albumsCollectionView) { (dataSource, indexPath, collection) -> UICollectionViewCell  in
+        albums.bind(to: albumsCollectionView) { [weak self] (dataSource, indexPath, collection) -> UICollectionViewCell  in
             guard let cell = collection.dequeueReusableCell(withReuseIdentifier: "AlbumsCell", for: indexPath) as? AlbumsCollectionViewCell else { fatalError() }
             
-            let albumImageURL = URL(string: self.albums.value.collection[indexPath.row].artworkUrl60)
-            cell.albumImageView.kf.setImage(with: albumImageURL)
+            if let self = self {
+                let albumImageURL = URL(string: self.albums.value.collection[indexPath.row].artworkUrl60)
+                cell.albumImageView.kf.setImage(with: albumImageURL)
+            }
             
             return cell
         }.dispose(in: bag)
@@ -54,12 +56,12 @@ class AlbumsViewController: UIViewController {
             }
 
             return cell
-        }
+        }.dispose(in: bag)
     }
     
     // MARK: - Requests
     func requestForAlbums(artistName: String) {
-        MusicViewModel().albumsRequest(artistName: artistName) { [weak self] albums in
+        MusicViewModel().request(artistName: artistName, entity: "album", limit: 10) { [weak self] (albums: Albums) in
             guard let self = self else { return }
             
             for album in albums.results {
@@ -69,7 +71,7 @@ class AlbumsViewController: UIViewController {
     }
     
     func requestForTracks(artistName: String) {
-        MusicViewModel().tracksRequest(artistName: artistName) { [weak self] tracks in
+        MusicViewModel().request(artistName: artistName, entity: "musicTrack", limit: 10) { [weak self] (tracks: Tracks) in
             guard let self = self else { return }
             
             for track in tracks.results {
