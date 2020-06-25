@@ -35,8 +35,10 @@ class AlbumsViewController: UIViewController {
             guard let cell = collection.dequeueReusableCell(withReuseIdentifier: "AlbumsCell", for: indexPath) as? AlbumsCollectionViewCell else { fatalError() }
             
             if let self = self {
-                let albumImageURL = URL(string: self.albums.value.collection[indexPath.row].artworkUrl60)
-                cell.albumImageView.kf.setImage(with: albumImageURL)
+                if let artworkUrl60 = self.albums.value.collection[indexPath.row].artworkUrl60 {
+                    let albumImageURL = URL(string: artworkUrl60)
+                    cell.albumImageView.kf.setImage(with: albumImageURL)
+                }
             }
             
             return cell
@@ -65,7 +67,9 @@ class AlbumsViewController: UIViewController {
             guard let self = self else { return }
             
             for album in albums.results {
-                self.albums.append(album)
+                if album.collectionName != nil && album.artworkUrl60 != nil {
+                    self.albums.append(album)
+                }
             }
         }
     }
@@ -74,11 +78,12 @@ class AlbumsViewController: UIViewController {
         MusicViewModel().request(artistId: artistId, entity: "song", limit: 10) { [weak self] (tracks: Tracks) in
             guard let self = self else { return }
             for track in tracks.results {
-                self.tracks.append(track)
+                if track.trackName != nil {
+                    self.tracks.append(track)
+                }
             }
         }
     }
-    
 }
 
 // MARK: - Albums collection view cell class

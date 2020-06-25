@@ -13,6 +13,6 @@ struct Tracks: Decodable {
     
     struct Track: Decodable {
         var artistName: String
-        var trackName: String
+        var trackName: String?
     }
 }

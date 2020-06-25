@@ -27,16 +27,13 @@ class MusicViewModel {
             
             if let url = url {
                 guard let jsonData = try? Data(contentsOf: url) else { return }
-                
+
                 guard let result = try? decoder.decode(ReadType.self, from: jsonData) else { return }
-                print(result)
                 
                 DispatchQueue.main.async {
                     getResult(result)
                 }
             }
-
-            
         }
     }
 }

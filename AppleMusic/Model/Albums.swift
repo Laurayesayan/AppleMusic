@@ -13,7 +13,7 @@ struct Albums: Decodable {
     
     struct Album: Decodable {
         var artistName: String
-        var collectionName: String
-        var artworkUrl60: String
+        var collectionName: String?
+        var artworkUrl60: String?
     }
 }

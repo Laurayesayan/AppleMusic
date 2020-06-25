@@ -64,15 +64,18 @@ class ArtistsViewController: UIViewController {
     func bindRequestToSearcher() {
         searcher.reactive.text
             .ignoreNils()
-            .filter{$0.count > 0}
+            .dropFirst(1)
             .debounce(for: 0.8)
             .observeNext { [weak self] text in
                 guard let self = self else { return }
                 
                 self.artists.removeAll()
                 
-                self.offset = 0
-                self.requestForArtists(artistName: text)
+                if text.count > 0 {
+                    self.offset = 0
+                    self.requestForArtists(artistName: text)
+                }
+                
         }.dispose(in: bag)
     }
     
