@@ -9,20 +9,34 @@
 import Foundation
 
 class MusicViewModel {
-    func request<ReadType: Decodable> (artistName: String, entity: String, limit: Int, offset: Int = 0, getResult: @escaping (ReadType) -> Void) {
+    func request<ReadType: Decodable> (artistName: String? = nil, artistId: Int? = nil, entity: String, limit: Int, offset: Int = 0, getResult: @escaping (ReadType) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
-            let filteredArtistName = artistName.replacingOccurrences(of: " ", with: "")
+            var url: URL!
+            var filteredArtistName = ""
             let decoder = JSONDecoder()
             
-            guard let url = URL(string: "https://itunes.apple.com/search?term=\(filteredArtistName)&entity=\(entity)&limit=\(limit)&offset=\(offset)") else { return }
-    
+            if let artistName = artistName {
+                filteredArtistName = artistName.replacingOccurrences(of: " ", with: "")
+            }
+            
+            if let artistId = artistId {
+                url = URL(string: "https://itunes.apple.com/lookup?id=\(artistId)&entity=\(entity)&limit=\(limit)&offset=\(offset)")
+            } else {
+                url = URL(string: "https://itunes.apple.com/search?term=\(filteredArtistName)&entity=\(entity)&limit=\(limit)&offset=\(offset)")
+            }
+            
+            if let url = url {
                 guard let jsonData = try? Data(contentsOf: url) else { return }
-
-                guard let artists = try? decoder.decode(ReadType.self, from: jsonData) else { return }
+                
+                guard let result = try? decoder.decode(ReadType.self, from: jsonData) else { return }
+                print(result)
                 
                 DispatchQueue.main.async {
-                    getResult(artists)
+                    getResult(result)
                 }
+            }
+
+            
         }
     }
 }

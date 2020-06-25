@@ -27,8 +27,8 @@ class ArtistsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if let albumsViewController = segue.destination as? AlbumsViewController, segue.identifier == "ShowAlbums" {
-            if let artistName = sender as? String {
-                albumsViewController.artistName = artistName
+            if let artistId = sender as? Int {
+                albumsViewController.artistId = artistId
             }
         }
     }
@@ -37,7 +37,7 @@ class ArtistsViewController: UIViewController {
     func observeRowSelection() {
         artistsTableView.reactive.selectedRowIndexPath.observeNext { [weak self] indexPath in
             guard let self = self else { return }
-            self.performSegue(withIdentifier: "ShowAlbums", sender: self.artists.value.collection[indexPath.row].artistName)
+            self.performSegue(withIdentifier: "ShowAlbums", sender: self.artists.value.collection[indexPath.row].artistId)
         }.dispose(in: bag)
     }
     
@@ -64,6 +64,7 @@ class ArtistsViewController: UIViewController {
     func bindRequestToSearcher() {
         searcher.reactive.text
             .ignoreNils()
+            .filter{$0.count > 0}
             .debounce(for: 0.8)
             .observeNext { [weak self] text in
                 guard let self = self else { return }

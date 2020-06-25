@@ -17,18 +17,18 @@ class AlbumsViewController: UIViewController {
     
     private var albums = MutableObservableArray<Albums.Album>([])
     private var tracks = MutableObservableArray<Tracks.Track>([])
-    var artistName: String?
+    var artistId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        requestForAlbums(artistName: self.artistName!)
-        requestForTracks(artistName: self.artistName!)
+        
+        requestForAlbums(artistId: self.artistId!)
+        requestForTracks(artistId: self.artistId!)
         
         bindAlbumsToCollectionView()
         bindTracksToTableView()
-    
     }
-
+    
     // MARK: - Binding
     func bindAlbumsToCollectionView() {
         albums.bind(to: albumsCollectionView) { [weak self] (dataSource, indexPath, collection) -> UICollectionViewCell  in
@@ -54,14 +54,14 @@ class AlbumsViewController: UIViewController {
                     subtitle.text = self.tracks.value.collection[indexPath.row].artistName
                 }
             }
-
+            
             return cell
         }.dispose(in: bag)
     }
     
     // MARK: - Requests
-    func requestForAlbums(artistName: String) {
-        MusicViewModel().request(artistName: artistName, entity: "album", limit: 10) { [weak self] (albums: Albums) in
+    func requestForAlbums(artistId: Int) {
+        MusicViewModel().request(artistId: artistId, entity: "album", limit: 10) { [weak self] (albums: Albums) in
             guard let self = self else { return }
             
             for album in albums.results {
@@ -70,10 +70,9 @@ class AlbumsViewController: UIViewController {
         }
     }
     
-    func requestForTracks(artistName: String) {
-        MusicViewModel().request(artistName: artistName, entity: "musicTrack", limit: 10) { [weak self] (tracks: Tracks) in
+    func requestForTracks(artistId: Int) {
+        MusicViewModel().request(artistId: artistId, entity: "song", limit: 10) { [weak self] (tracks: Tracks) in
             guard let self = self else { return }
-            
             for track in tracks.results {
                 self.tracks.append(track)
             }
