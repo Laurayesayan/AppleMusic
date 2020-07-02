@@ -9,16 +9,14 @@
 /* Begin PBXBuildFile section */
 		A4B64F9A4AA947F9BAB8414B /* Pods_AppleMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 178109EE429924D4005A39D2 /* Pods_AppleMusic.framework */; };
 		F7694FE72499520A0034DD47 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7694FE62499520A0034DD47 /* AlbumsViewController.swift */; };
-		F7694FE924995F200034DD47 /* Albums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7694FE824995F200034DD47 /* Albums.swift */; };
-		F78278A1249E44DA0004A4C0 /* Tracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78278A0249E44DA0004A4C0 /* Tracks.swift */; };
+		F7694FE924995F200034DD47 /* MusicAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7694FE824995F200034DD47 /* MusicAPIResponse.swift */; };
 		F7FDDF452494EB5600EF46B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FDDF442494EB5600EF46B4 /* AppDelegate.swift */; };
 		F7FDDF472494EB5600EF46B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FDDF462494EB5600EF46B4 /* SceneDelegate.swift */; };
 		F7FDDF492494EB5600EF46B4 /* ArtistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FDDF482494EB5600EF46B4 /* ArtistsViewController.swift */; };
 		F7FDDF4C2494EB5600EF46B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7FDDF4A2494EB5600EF46B4 /* Main.storyboard */; };
 		F7FDDF4E2494EB5800EF46B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FDDF4D2494EB5800EF46B4 /* Assets.xcassets */; };
 		F7FDDF512494EB5800EF46B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7FDDF4F2494EB5800EF46B4 /* LaunchScreen.storyboard */; };
-		F7FDDF592494F75E00EF46B4 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FDDF582494F75E00EF46B4 /* Artist.swift */; };
-		F7FDDF5B2496378C00EF46B4 /* MusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FDDF5A2496378C00EF46B4 /* MusicViewModel.swift */; };
+		F7FDDF5B2496378C00EF46B4 /* MusicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FDDF5A2496378C00EF46B4 /* MusicRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +24,7 @@
 		21DF84646630806F384E1F4E /* Pods-AppleMusic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleMusic.debug.xcconfig"; path = "Target Support Files/Pods-AppleMusic/Pods-AppleMusic.debug.xcconfig"; sourceTree = "<group>"; };
 		6CFBCA87B9D6D206109704DC /* Pods-AppleMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleMusic.release.xcconfig"; path = "Target Support Files/Pods-AppleMusic/Pods-AppleMusic.release.xcconfig"; sourceTree = "<group>"; };
 		F7694FE62499520A0034DD47 /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
-		F7694FE824995F200034DD47 /* Albums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Albums.swift; sourceTree = "<group>"; };
-		F78278A0249E44DA0004A4C0 /* Tracks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracks.swift; sourceTree = "<group>"; };
+		F7694FE824995F200034DD47 /* MusicAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicAPIResponse.swift; sourceTree = "<group>"; };
 		F7FDDF412494EB5600EF46B4 /* AppleMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7FDDF442494EB5600EF46B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7FDDF462494EB5600EF46B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,8 +33,7 @@
 		F7FDDF4D2494EB5800EF46B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7FDDF502494EB5800EF46B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F7FDDF522494EB5800EF46B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F7FDDF582494F75E00EF46B4 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
-		F7FDDF5A2496378C00EF46B4 /* MusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewModel.swift; sourceTree = "<group>"; };
+		F7FDDF5A2496378C00EF46B4 /* MusicRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +68,7 @@
 		F782789F249E44BA0004A4C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F7694FE824995F200034DD47 /* Albums.swift */,
-				F7FDDF582494F75E00EF46B4 /* Artist.swift */,
-				F78278A0249E44DA0004A4C0 /* Tracks.swift */,
+				F7694FE824995F200034DD47 /* MusicAPIResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -91,7 +85,7 @@
 		F78278A3249E45050004A4C0 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				F7FDDF5A2496378C00EF46B4 /* MusicViewModel.swift */,
+				F7FDDF5A2496378C00EF46B4 /* MusicRequest.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -245,14 +239,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7FDDF5B2496378C00EF46B4 /* MusicViewModel.swift in Sources */,
+				F7FDDF5B2496378C00EF46B4 /* MusicRequest.swift in Sources */,
 				F7FDDF492494EB5600EF46B4 /* ArtistsViewController.swift in Sources */,
 				F7694FE72499520A0034DD47 /* AlbumsViewController.swift in Sources */,
 				F7FDDF452494EB5600EF46B4 /* AppDelegate.swift in Sources */,
-				F7694FE924995F200034DD47 /* Albums.swift in Sources */,
-				F7FDDF592494F75E00EF46B4 /* Artist.swift in Sources */,
+				F7694FE924995F200034DD47 /* MusicAPIResponse.swift in Sources */,
 				F7FDDF472494EB5600EF46B4 /* SceneDelegate.swift in Sources */,
-				F78278A1249E44DA0004A4C0 /* Tracks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

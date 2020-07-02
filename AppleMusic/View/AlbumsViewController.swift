@@ -15,8 +15,9 @@ class AlbumsViewController: UIViewController {
     @IBOutlet weak var albumsCollectionView: UICollectionView!
     @IBOutlet weak var tracksTableView: UITableView!
     
-    private var albums = MutableObservableArray<Albums.Album>([])
-    private var tracks = MutableObservableArray<Tracks.Track>([])
+    private let musicRequest = MusicRequest()
+    private var albums = MutableObservableArray<Album>([])
+    private var tracks = MutableObservableArray<Track>([])
     var artistId: Int?
     
     override func viewDidLoad() {
@@ -63,7 +64,7 @@ class AlbumsViewController: UIViewController {
     
     // MARK: - Requests
     func requestForAlbums(artistId: Int) {
-        MusicViewModel().request(artistId: artistId, entity: "album", limit: 10) { [weak self] (albums: Albums) in
+        musicRequest.detailRequest(artistId: artistId, entity: "album", limit: 10) { [weak self] (albums: MusicAPIResponse<Album>) in
             guard let self = self else { return }
             
             for album in albums.results {
@@ -75,7 +76,7 @@ class AlbumsViewController: UIViewController {
     }
     
     func requestForTracks(artistId: Int) {
-        MusicViewModel().request(artistId: artistId, entity: "song", limit: 10) { [weak self] (tracks: Tracks) in
+        musicRequest.detailRequest(artistId: artistId, entity: "song", limit: 10) { [weak self] (tracks: MusicAPIResponse<Track>) in
             guard let self = self else { return }
             for track in tracks.results {
                 if track.trackName != nil {

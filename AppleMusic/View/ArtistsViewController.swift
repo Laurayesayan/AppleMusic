@@ -14,7 +14,8 @@ class ArtistsViewController: UIViewController {
     @IBOutlet weak var searcher: UISearchBar!
     @IBOutlet weak var artistsTableView: UITableView!
     
-    private var artists = MutableObservableArray<Artists.Artist>([])
+    private let musicRequest = MusicRequest()
+    private var artists = MutableObservableArray<Artist>([])
     private var offset = 0
     
     override func viewDidLoad() {
@@ -81,7 +82,7 @@ class ArtistsViewController: UIViewController {
     
     // MARK: - Request
     func requestForArtists(artistName: String) {
-        MusicViewModel().request(artistName: artistName, entity: "musicArtist", limit: 50, offset: self.offset) { [weak self] (artists: Artists) in
+        musicRequest.request(artistName: artistName, entity: "musicArtist", limit: 50, offset: self.offset) { [weak self] (artists: MusicAPIResponse<Artist>) in
             guard let self = self else { return }
 
             for artist in artists.results {
