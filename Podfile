@@ -8,5 +8,6 @@ target 'AppleMusic' do
   # Pods for AppleMusic
   pod 'Bond', '~> 7.4'
   pod 'Kingfisher', '~> 5'
+  pod 'SVProgressHUD'
 
 end

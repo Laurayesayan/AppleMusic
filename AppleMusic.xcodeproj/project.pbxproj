@@ -82,14 +82,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		F78278A3249E45050004A4C0 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				F7FDDF5A2496378C00EF46B4 /* MusicRequest.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		F7FDDF382494EB5600EF46B4 = {
 			isa = PBXGroup;
 			children = (
@@ -119,7 +111,7 @@
 				F7FDDF462494EB5600EF46B4 /* SceneDelegate.swift */,
 				F782789F249E44BA0004A4C0 /* Model */,
 				F78278A2249E44E00004A4C0 /* View */,
-				F78278A3249E45050004A4C0 /* ViewModel */,
+				F7FDDF5A2496378C00EF46B4 /* MusicRequest.swift */,
 			);
 			path = AppleMusic;
 			sourceTree = "<group>";
