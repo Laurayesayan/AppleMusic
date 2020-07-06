@@ -20,6 +20,7 @@ class ArtistsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        artistsTableView.tableFooterView = UIView()
         bindRequestToSearcher()
         bindArtistsToTableView()
         observeRowSelection()

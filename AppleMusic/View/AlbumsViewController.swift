@@ -23,6 +23,8 @@ class AlbumsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tracksTableView.tableFooterView = UIView()
+        
         requestForAlbums(artistId: self.artistId!)
         requestForTracks(artistId: self.artistId!)
         

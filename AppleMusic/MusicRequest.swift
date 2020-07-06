@@ -16,26 +16,29 @@ class MusicRequest {
             SVProgressHUD.show()
         }
         
-        DispatchQueue.global(qos: .userInitiated).async {
-            var url: URL!
-            var filteredArtistName = ""
-            let decoder = JSONDecoder()
-
-            filteredArtistName = artistName.replacingOccurrences(of: " ", with: "")
+        var url: URL!
+        var filteredArtistName = ""
+        let decoder = JSONDecoder()
+        filteredArtistName = artistName.replacingOccurrences(of: " ", with: "")
+        
+        let addressString = "https://itunes.apple.com/search?term=\(filteredArtistName)&entity=\(entity)&limit=\(limit)&offset=\(offset)"
+        guard let requestString = addressString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) else { return }
+        url = URL(string: requestString)
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let jsonData = data else { return }
             
-            url = URL(string: "https://itunes.apple.com/search?term=\(filteredArtistName)&entity=\(entity)&limit=\(limit)&offset=\(offset)")
-
-            if let url = url {
-                guard let jsonData = try? Data(contentsOf: url) else { return }
-
-                guard let result = try? decoder.decode(ReadType.self, from: jsonData) else { return }
-                
-                DispatchQueue.main.async {
-                    getResult(result)
-                    SVProgressHUD.dismiss()
-                }
+            if let error = error {
+                print("Error message: ", error)
             }
-        }
+            
+            guard let result = try? decoder.decode(ReadType.self, from: jsonData) else { return }
+            
+            DispatchQueue.main.async {
+                getResult(result)
+                SVProgressHUD.dismiss()
+            }
+        }.resume()
     }
     
     func detailRequest<ReadType: Decodable>(artistId: Int, entity: String, limit: Int, getResult: @escaping (ReadType) -> Void) {
@@ -43,22 +46,26 @@ class MusicRequest {
             SVProgressHUD.setForegroundColor(#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1))
             SVProgressHUD.show()
         }
-        DispatchQueue.global(qos: .userInitiated).async {
-            let decoder = JSONDecoder()
-            var url: URL!
+        
+        let decoder = JSONDecoder()
+        var url: URL!
+        
+        let requestString = "https://itunes.apple.com/lookup?id=\(artistId)&entity=\(entity)&limit=\(limit)"
+        url = URL(string: requestString)
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let jsonData = data else { return }
             
-            url = URL(string: "https://itunes.apple.com/lookup?id=\(artistId)&entity=\(entity)&limit=\(limit)")
-            
-            if let url = url {
-                guard let jsonData = try? Data(contentsOf: url) else { return }
-
-                guard let result = try? decoder.decode(ReadType.self, from: jsonData) else { return }
-                
-                DispatchQueue.main.async {
-                    getResult(result)
-                    SVProgressHUD.dismiss()
-                }
+            if let error = error {
+                print("Error message: ", error)
             }
-        }
+            
+            guard let result = try? decoder.decode(ReadType.self, from: jsonData) else { return }
+            
+            DispatchQueue.main.async {
+                getResult(result)
+                SVProgressHUD.dismiss()
+            }
+        }.resume()
     }
 }
