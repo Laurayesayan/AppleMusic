@@ -11,7 +11,7 @@ import Bond
 import ReactiveKit
 import Kingfisher
 
-class AlbumsViewController: UIViewController {
+class AlbumsViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var albumsCollectionView: UICollectionView!
     @IBOutlet weak var tracksTableView: UITableView!
     
